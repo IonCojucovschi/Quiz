@@ -34,7 +34,7 @@ namespace TestQuiz.Controllers
                 _applicationContext.Users.Add(user);
                 _applicationContext.SaveChanges();
             }
-            return View();
+            return View(user);
         }
     }
 }
