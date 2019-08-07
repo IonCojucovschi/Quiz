@@ -11,5 +11,6 @@ namespace DataLayes.Models
         public string Role { get; set; }
         public string Passwod { get; set; }
         public string Login { get; set; }
+        public User Parent { get; set; }
     }
 }

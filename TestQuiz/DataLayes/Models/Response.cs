@@ -8,6 +8,6 @@ namespace DataLayes.Models
     {
         public string Content { get; set; }
 
-        public Answer Answer { get; set; }
+        public Question Answer { get; set; }
     }
 }

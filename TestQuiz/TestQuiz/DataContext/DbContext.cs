@@ -12,6 +12,6 @@ namespace TestQuiz.DataContext
         public ApplicationContext(DbContextOptions<ApplicationContext> options):base(options)
         { }
         public DbSet<User> Users { get; set; }
-        public DbSet<Answer> Answers { get; set; }
+        public DbSet<Question> Answers { get; set; }
     }
 }

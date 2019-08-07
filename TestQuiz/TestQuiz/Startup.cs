@@ -28,6 +28,7 @@ namespace TestQuiz
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();
+                app.UseWebpackDevMiddleware(); // 1   use web pack in development mode 
                 app.UseDatabaseErrorPage();
             }
             else
@@ -36,16 +37,28 @@ namespace TestQuiz
                 app.UseHsts();
             }
 
-            app.UseHttpsRedirection();
+
+
             app.UseStaticFiles();
-            app.UseCookiePolicy();
-
-            app.UseAuthentication();
-
             app.UseMvc(routes =>
             {
-                routes.MapRoute("default", "{controller=Homme}/{action=Index}/{id?}");
+                routes.MapRoute(
+                    name: "DefaultApi",
+                    template: "{controller}/{action}");
+                routes.MapSpaFallbackRoute("spa-fallback", new { controller = "Homme", action = "Index" }); // 2
             });
+
+
+            //app.UseHttpsRedirection();
+            //app.UseStaticFiles();
+            //app.UseCookiePolicy();
+
+            //app.UseAuthentication();
+
+            //app.UseMvc(routes =>
+            //{
+            //    routes.MapRoute("default", "{controller=Homme}/{action=Index}/{id?}");
+            //});
         }
     }
 }

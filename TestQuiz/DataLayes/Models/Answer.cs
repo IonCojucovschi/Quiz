@@ -4,7 +4,7 @@ using System.Text;
 
 namespace DataLayes.Models
 {
-    public class Answer:Entity
+    public class Question:Entity
     {
         public string Content { get; set; }
 

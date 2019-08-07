@@ -9,8 +9,8 @@ using TestQuiz.DataContext;
 namespace TestQuiz.Migrations
 {
     [DbContext(typeof(ApplicationContext))]
-    [Migration("20190723195842_InitialMigration")]
-    partial class InitialMigration
+    [Migration("20190730170218_UpdateModels_1")]
+    partial class UpdateModels_1
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -18,12 +18,14 @@ namespace TestQuiz.Migrations
             modelBuilder
                 .HasAnnotation("ProductVersion", "2.2.6-servicing-10079");
 
-            modelBuilder.Entity("DataLayes.Models.Answer", b =>
+            modelBuilder.Entity("DataLayes.Models.Question", b =>
                 {
                     b.Property<int>("id")
                         .ValueGeneratedOnAdd();
 
                     b.Property<string>("Content");
+
+                    b.Property<bool>("IsTrueFalse");
 
                     b.HasKey("id");
 
@@ -55,6 +57,8 @@ namespace TestQuiz.Migrations
 
                     b.Property<string>("Name");
 
+                    b.Property<int?>("Parentid");
+
                     b.Property<string>("Passwod");
 
                     b.Property<string>("Role");
@@ -63,14 +67,23 @@ namespace TestQuiz.Migrations
 
                     b.HasKey("id");
 
+                    b.HasIndex("Parentid");
+
                     b.ToTable("Users");
                 });
 
             modelBuilder.Entity("DataLayes.Models.Response", b =>
                 {
-                    b.HasOne("DataLayes.Models.Answer", "Answer")
+                    b.HasOne("DataLayes.Models.Question", "Answer")
                         .WithMany("Responses")
                         .HasForeignKey("Answerid");
+                });
+
+            modelBuilder.Entity("DataLayes.Models.User", b =>
+                {
+                    b.HasOne("DataLayes.Models.User", "Parent")
+                        .WithMany()
+                        .HasForeignKey("Parentid");
                 });
 #pragma warning restore 612, 618
         }
